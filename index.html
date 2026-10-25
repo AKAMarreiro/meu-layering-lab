@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0d1216">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="./icons/layering-lab.svg">
+<link rel="apple-touch-icon" href="./icons/layering-lab.svg">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="Seu laboratório pessoal de layering: 38 combinações de perfumes, avaliações e notas privadas.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Layering Lab">
@@ -215,6 +219,9 @@ $('export-csv').addEventListener('click',()=>{const rows=[['Receita','Tipo','Fó
 $('print-btn').addEventListener('click',()=>window.print());
 $('clear-btn').addEventListener('click',()=>{if(!confirm('Apagar avaliações e notas e voltar aos dois testes aprovados inicialmente? Exporte um backup antes.'))return;REVIEWS={...STARTER};try{localStorage.removeItem(KEY)}catch{}render();toast('Avaliações reiniciadas.')});
 renderBottles();render();save();
+</script>
+<script>
+(()=>{if(!('serviceWorker'in navigator))return;let reloading=false;function offer(worker){if(!worker||document.getElementById('lab-pwa-update'))return;const bar=document.createElement('div');bar.id='lab-pwa-update';bar.setAttribute('role','status');bar.style.cssText='position:fixed;bottom:calc(16px + env(safe-area-inset-bottom));left:12px;right:12px;max-width:520px;margin:auto;z-index:9999;background:#1a2328;color:#f6f3ed;border:1px solid #d1b18a;border-radius:14px;padding:14px;box-shadow:0 15px 35px #0009;font:14px -apple-system,BlinkMacSystemFont,Arial,sans-serif;display:flex;gap:12px;align-items:center;justify-content:space-between';const label=document.createElement('span');label.textContent='Nova versão do Layering Lab disponível.';const button=document.createElement('button');button.textContent='Atualizar';button.style.cssText='background:#d1b18a;color:#0d1216;border:0;border-radius:8px;padding:10px 14px;font-weight:700';button.onclick=()=>{button.disabled=true;button.textContent='Atualizando…';worker.postMessage({type:'SKIP_WAITING'})};bar.append(label,button);document.body.append(bar)}navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!reloading){reloading=true;location.reload()}});window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'});if(reg.waiting&&navigator.serviceWorker.controller)offer(reg.waiting);reg.addEventListener('updatefound',()=>{const worker=reg.installing;if(worker)worker.addEventListener('statechange',()=>{if(worker.state==='installed'&&navigator.serviceWorker.controller)offer(worker)})});const check=()=>{if(navigator.onLine)reg.update().catch(()=>{})};document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')check()});window.addEventListener('online',check);check()}catch(e){console.warn('PWA:',e)}})})();
 </script>
 </body>
 </html>
