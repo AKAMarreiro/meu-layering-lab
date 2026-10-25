@@ -1,0 +1,20 @@
+{
+  "id": "/meu-layering-lab/",
+  "name": "Meu Layering Lab",
+  "short_name": "Layering Lab",
+  "description": "Meu laboratório de perfumes: misturas e avaliações",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d1216",
+  "theme_color": "#0d1216",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "./icons/layering-lab.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
