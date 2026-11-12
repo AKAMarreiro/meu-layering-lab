@@ -1,4 +1,4 @@
-const CACHE='layering-lab-v4-pwa-20261025-2';
+const CACHE='layering-lab-v5-pwa-20261111-sauvage-edp';
 const SHELL=['./','./index.html','./manifest.webmanifest','./icons/layering-lab.svg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL))));
 self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const k of await caches.keys()){if(k.startsWith('layering-lab-')&&k!==CACHE)await caches.delete(k)}await self.clients.claim()})()));
